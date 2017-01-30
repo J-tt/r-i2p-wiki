@@ -1,3 +1,8 @@
+---
+layout: post
+title: I2P Security Considerations
+---
+
 # I2P Security Considerations
  
 I2P is a great tool for online privacy & security, but like any software, it is not perfect. There are issues one needs to consider before and during use of I2P.
