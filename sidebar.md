@@ -25,42 +25,36 @@ It's not recommended as that is not the main use of I2P, but you can. See inform
 For a more complete list of interesting I2P services, read the [Guide to I2P services](http://pastebin.com/xWzw10wW).
 
 ## General
-* [I2P2](http://i2p-projekt.i2p) Main project site
-* [Forum](http://forum.i2p) Main forum
-* [zzz](http://zzz.i2p) Developers forum
+* [Main project site](http://i2p-projekt.i2p) 
+* [I2P Forum](http://i2pforum.i2p) ([clearnet](https://i2pforum.net/)) Official I2P community and development forum
+* [zzz](http://zzz.i2p) zzz's personal website, old developers forum
 * [planet.i2p](http://planet.i2p) RSS aggregator
-* [Salt (Now NaCL)](http://nacl.i2p) Crypto-munitions and tutorials  
 * [I2P-Bote](http://bote.i2p) Serverless, encrypted e-mail plugin for I2P
 
 ## File Hosting and Pastebins
-* [Zerofiles](http://zerofiles.i2p) File and image hosting
 * [i2push](http://i2push.i2p) File hosting
 * [Zerobin](http://zerobin.i2p) Encrypted Pastebin
-* ~~[LodgeIt](http://pastethis.i2p) General Pastebin~~ Down
-* [imgbi](http://imgbi.i2p) encrypted image host
+* [FS](http://fs.i2p) Filesharing service
+* [PrivateBin](http://paste.r4sas.i2p/) Other encrypted pastebin
+* [Pasta NoJS](http://pasta-nojs.i2p/) Basic pastebin (JavaScript-free)
 
 ## Torrents
 * [PaTracker](http://tracker2.postman.i2p) Main torrent tracker
 * [DifTracker](http://diftracker.i2p) (French) torrent tracker
+* [Anodex](http://anodex.i2p) Torrents index
 
 ## Social Networks and Microblogging
-* [Id3nt](http://id3nt.i2p) Microblogging  
-* [Jisko](http://jisko.i2p) Microblogging
 * [Visibility](http://visibility.i2p) Social Publishing
+* [Decentralized social network](http://em763732l4b7b7zhaolctpt6wewwr7zw3nsxfchr6qmceizzmgpa.b32.i2p) ([clearnet](https://social.i2p.rocks))
 
 ## Exploring I2P
-* [eepSites](http://eepsites.i2p) Obtanium search engine
-* [Epsilon](http://epsilon.i2p) Apache Nutch search engine
 * [Identiguy](http://identiguy.i2p) List online .i2p sites
-* [Perv's I2P site status tracker](http://perv.i2p)
 * [I2P Name Registry](http://inr.i2p)
 
 ## IRC
 *Irc2P comes pre-configured with I2P. To connect with other networks, please follow [this tutorial](http://i.imgur.com/PxZLa.png).*
 
 * [Irc2P](irc://127.0.0.1/6668/#i2p-chat) (works out of the box)
-* irc.killyourtv.i2p
-* irc.stream.i2p
 
 ## Syndie
 An open source system for operating distributed forums in anonymous networks
