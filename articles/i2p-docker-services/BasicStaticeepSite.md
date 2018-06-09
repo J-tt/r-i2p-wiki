@@ -25,7 +25,8 @@ In order to provide static IP addresses for the containers you generate, you'll
 need to create a separate Docker network with an explicitly defined, limited
 subnet.
 
-        docker network create --subnet 172.81.81.0/29 eepsite
+```docker network create --subnet 172.81.81.0/29 eepsite
+```
 
 ### Configuring an i2p router with a single HTTP service tunnel
 
@@ -37,23 +38,24 @@ package. The trade-off, of course, is a somewhat larger container.
 
 #### The Dockerfile
 
-        FROM debian:sid
-        RUN apt-get update && apt-get dist-upgrade -y
-        RUN apt-get install -y gpg ca-certificates
-        RUN echo "deb http://repo.lngserv.ru/debian stretch main" | tee /etc/apt/sources.list.d/i2pd.list
-        RUN echo "deb-src http://repo.lngserv.ru/debian stretch main" | tee -a /etc/apt/sources.list.d/i2pd.list
-        RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv 66F6C87B98EBCFE2
-        RUN apt-get update && apt-get install -y i2pd
-        COPY i2pd.conf tunnels.conf /etc/i2pd/
-        CMD chown -R i2pd:i2pd /var/lib/i2pd; \
-            ln -sf /usr/share/i2pd/certificates /var/lib/i2pd/certificates; \
-            ln -sf /etc/i2pd/subscriptions.txt /var/lib/i2pd/subscriptions.txt; \
-            su - -c "i2pd i2pd --service --loglevel=info \
-                --conf=/etc/i2pd/i2pd.conf \
-                --tunconf=/etc/i2pd/tunnels.conf \
-                --log=/var/log/i2pd/log"; \
-            sleep 5; \
-            tail -f /var/log/i2pd/log
+```FROM debian:sid
+RUN apt-get update && apt-get dist-upgrade -y
+RUN apt-get install -y gpg ca-certificates
+RUN echo "deb http://repo.lngserv.ru/debian stretch main" | tee /etc/apt/sources.list.d/i2pd.list
+RUN echo "deb-src http://repo.lngserv.ru/debian stretch main" | tee -a /etc/apt/sources.list.d/i2pd.list
+RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv 66F6C87B98EBCFE2
+RUN apt-get update && apt-get install -y i2pd
+COPY i2pd.conf tunnels.conf /etc/i2pd/
+CMD chown -R i2pd:i2pd /var/lib/i2pd; \
+    ln -sf /usr/share/i2pd/certificates /var/lib/i2pd/certificates; \
+    ln -sf /etc/i2pd/subscriptions.txt /var/lib/i2pd/subscriptions.txt; \
+    su - -c "i2pd i2pd --service --loglevel=info \
+      --conf=/etc/i2pd/i2pd.conf \
+      --tunconf=/etc/i2pd/tunnels.conf \
+      --log=/var/log/i2pd/log"; \
+    sleep 5; \
+    tail -f /var/log/i2pd/log
+```
 
 Before we build, we'll need to create a configuration files to use for our
 Dockerized i2pd container. In the i2pd.conf file, you should disable the HTTP
@@ -64,13 +66,14 @@ slightly more interesting file is the tunnels.conf file.
 
 #### The tunnels.conf file
 
-        [DARKHTTPD]
-        type = http
-        host = eepsite-darkhttpd
-        port = 8080
-        inbound.length = 3
-        outbound.length = 3
-        keys = darkhttpd.dat
+```[DARKHTTPD]
+type = http
+host = eepsite-darkhttpd
+port = 8080
+inbound.length = 3
+outbound.length = 3
+keys = darkhttpd.dat
+```
 
 Note that the inbound.length and outbound.length are both set to three. This is
 optimized to make web sites anonymous, but it will cost some speed. Selecting
@@ -80,24 +83,26 @@ lower latency.
 #### Build and Run the container:
 
 Once you've got your configuration files and your Dockerfile created, run the
-following command to build the container(Where Dockerfile.i2pd is the newly
+following command to build the container (Where Dockerfile.i2pd is the newly
 created Dockerfile):
 
-        docker build --rm -f Dockerfile.i2pd -t dockerhub_username/eepsite .
+```docker build --rm -f Dockerfile.i2pd -t dockerhub_username/eepsite .
+```
 
 And this command to run the container:
 
-        docker run --restart=always -i -t \
-            --name eepsite-i2pd \
-            --network eepsite \
-            --network-alias eepsite-i2pd \
-            --hostname eepsite-i2pd \
-            --link eepsite-darkhttpd \
-            --ip 172.81.81.2 \
-            -p :4567 \
-            -p 127.0.0.1:7070:7070 \
-            -v eepsite:/var/lib/i2pd \
-            dockerhub_username/eepsite-i2pd
+```docker run --restart=always -i -t \
+    --name eepsite-i2pd \
+    --network eepsite \
+    --network-alias eepsite-i2pd \
+    --hostname eepsite-i2pd \
+    --link eepsite-darkhttpd \
+    --ip 172.81.81.2 \
+    -p :4567 \
+    -p 127.0.0.1:7070:7070 \
+    -v eepsite:/var/lib/i2pd \
+    dockerhub_username/eepsite-i2pd
+```
 
 ### Configuring DarkHTTPD with your content
 
@@ -108,14 +113,15 @@ a static site generator like Jekyll will do.
 
 #### The Dockerfile
 
-        FROM alpine:3.7
-        ARG WEBSITE=website
-        ENV WEBSITE=$WEBSITE
-        RUN apk update
-        RUN apk add darkhttpd
-        COPY $WEBSITE /car/www/localhost/htdocs/$WEBSITE
-        USER darkhttpd
-        CMD darkhttpd /car/www/localhost/htdocs/$WEBSITE --port 8080 --log stdout --no-server-id
+```FROM alpine:3.7
+ARG WEBSITE=website
+ENV WEBSITE=$WEBSITE
+RUN apk update
+RUN apk add darkhttpd
+COPY $WEBSITE /car/www/localhost/htdocs/$WEBSITE
+USER darkhttpd
+CMD darkhttpd /car/www/localhost/htdocs/$WEBSITE --port 8080 --log stdout --no-server-id
+```
 
 I keep my eepSite files in the same folder as the Dockefiles, under their own
 directory named "website" to make things easier when passing the website's files
@@ -130,9 +136,10 @@ site.
 
 The full command to build the image for your static eepsite is:
 
-        docker build --rm \
-            --build-arg WEBSITE=website \
-            -f Dockerfile.darkhttpd -t dockerhub_username/eepsite-darkhttpd .
+```docker build --rm \
+    --build-arg WEBSITE=website \
+    -f Dockerfile.darkhttpd -t dockerhub_username/eepsite-darkhttpd .
+```
 
 with the argument included. Make sure to change the argument if your website
 is in a different directory than "website."
@@ -140,10 +147,11 @@ is in a different directory than "website."
 Lastly, to run the container and serve the darkhttpd static website over i2p,
 run the command:
 
-        docker run --restart=always -i -t -d \
-            --name eepsite-darkhttpd \
-            --network eepsite \
-            --network-alias eepsite-darkhttpd \
-            --hostname eepsite-darkhttpd \
-            --ip 172.81.81.3 \
-            dockerhub_username/eepsite-darkhttpd
+```docker run --restart=always -i -t -d \
+    --name eepsite-darkhttpd \
+    --network eepsite \
+    --network-alias eepsite-darkhttpd \
+    --hostname eepsite-darkhttpd \
+    --ip 172.81.81.3 \
+    dockerhub_username/eepsite-darkhttpd
+```
