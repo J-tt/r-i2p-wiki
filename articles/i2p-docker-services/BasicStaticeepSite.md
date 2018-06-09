@@ -39,7 +39,7 @@ package. The trade-off, of course, is a somewhat larger container.
 
 #### The Dockerfile
 
-```
+```Dockerfile
 FROM debian:sid
 RUN apt-get update && apt-get dist-upgrade -y
 RUN apt-get install -y gpg ca-certificates
@@ -58,6 +58,7 @@ CMD chown -R i2pd:i2pd /var/lib/i2pd; \
     sleep 5; \
     tail -f /var/log/i2pd/log
 ```
+
 
 Before we build, we'll need to create a configuration files to use for our
 Dockerized i2pd container. In the i2pd.conf file, you should disable the HTTP
@@ -118,7 +119,7 @@ a static site generator like Jekyll will do.
 
 #### The Dockerfile
 
-```
+```Dockerfile
 FROM alpine:3.7
 ARG WEBSITE=website
 ENV WEBSITE=$WEBSITE
