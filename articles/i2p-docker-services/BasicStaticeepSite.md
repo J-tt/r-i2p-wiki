@@ -25,7 +25,8 @@ In order to provide static IP addresses for the containers you generate, you'll
 need to create a separate Docker network with an explicitly defined, limited
 subnet.
 
-```docker network create --subnet 172.81.81.0/29 eepsite
+```
+docker network create --subnet 172.81.81.0/29 eepsite
 ```
 
 ### Configuring an i2p router with a single HTTP service tunnel
@@ -38,7 +39,8 @@ package. The trade-off, of course, is a somewhat larger container.
 
 #### The Dockerfile
 
-```FROM debian:sid
+```
+FROM debian:sid
 RUN apt-get update && apt-get dist-upgrade -y
 RUN apt-get install -y gpg ca-certificates
 RUN echo "deb http://repo.lngserv.ru/debian stretch main" | tee /etc/apt/sources.list.d/i2pd.list
@@ -66,7 +68,8 @@ slightly more interesting file is the tunnels.conf file.
 
 #### The tunnels.conf file
 
-```[DARKHTTPD]
+```
+[DARKHTTPD]
 type = http
 host = eepsite-darkhttpd
 port = 8080
@@ -86,12 +89,14 @@ Once you've got your configuration files and your Dockerfile created, run the
 following command to build the container (Where Dockerfile.i2pd is the newly
 created Dockerfile):
 
-```docker build --rm -f Dockerfile.i2pd -t dockerhub_username/eepsite .
+```
+docker build --rm -f Dockerfile.i2pd -t dockerhub_username/eepsite .
 ```
 
 And this command to run the container:
 
-```docker run --restart=always -i -t \
+```
+docker run --restart=always -i -t \
     --name eepsite-i2pd \
     --network eepsite \
     --network-alias eepsite-i2pd \
@@ -113,7 +118,8 @@ a static site generator like Jekyll will do.
 
 #### The Dockerfile
 
-```FROM alpine:3.7
+```
+FROM alpine:3.7
 ARG WEBSITE=website
 ENV WEBSITE=$WEBSITE
 RUN apk update
@@ -136,7 +142,8 @@ site.
 
 The full command to build the image for your static eepsite is:
 
-```docker build --rm \
+```
+docker build --rm \
     --build-arg WEBSITE=website \
     -f Dockerfile.darkhttpd -t dockerhub_username/eepsite-darkhttpd .
 ```
@@ -147,7 +154,8 @@ is in a different directory than "website."
 Lastly, to run the container and serve the darkhttpd static website over i2p,
 run the command:
 
-```docker run --restart=always -i -t -d \
+```
+docker run --restart=always -i -t -d \
     --name eepsite-darkhttpd \
     --network eepsite \
     --network-alias eepsite-darkhttpd \
