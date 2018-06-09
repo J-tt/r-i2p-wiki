@@ -8,6 +8,8 @@
 
 * [Basic video tutorials (installation, tweaks, browser configuration, irc, torrents)](https://www.youtube.com/user/i2ptutorials)
 
+* [r/i2p Wiki](https://j-tt.github.io/r-i2p-wiki/)
+
 I2P can be downloaded [here](http://www.i2p2.de)
 
 # FAQ:
