@@ -1,5 +1,5 @@
-Mirroring an existing Github Pages site using a Static eepSite
-==============================================================
+Mirroring an existing Github Pages site using Jekyll and i2p, with Tor for location obfuscation
+===============================================================================================
 
 This is kind of a softball tutorial, it's almost the same as the **[Previous tutorial](BasicStaticeepSite.md):**
 but it's intended specifically to allow you to mirror a Github Pages based site
@@ -12,10 +12,9 @@ where long-term pseudonymity is desirable.
 So, just to be clear
 --------------------
 
-  * *For this tutorial to be unlinkable to your real identity, your github*
-   *must be unlinkable to your real identity*.
-  * *This is pseudonymous, location-obfuscated mirroring of a github pages*
-   *site.*
+  * *For this tutorial to be unlinkable to your real identity, your github must be unlinkable to your real identity.*
+  * *It does not conceal your identity on github(username, repository) from visitors, but it does conceal your IP address from github.*
+  * *This is pseudonymous, location-obfuscated mirroring of a github pages site.*
 
 Now with that out of the way, let's get down to mirroring a Github Pages site,
 for example this exact wiki, to your own i2p eepSite.
@@ -77,7 +76,7 @@ simple to do so it makes a good example.
 For the purposes of this demonstration, we're going to assume that the pertinent
 adversaries do not have sufficient power to link your fetching of packages via
 the rubygems package manager to your eepsite activity. If that's an issue for
-you, I kinda hope you didn't need this tutorial. It also assumes that you are
+you, I kinda hope you don't need this tutorial. It also assumes that you are
 not concerned about separating contextual identities *because* you are only
 going to use this Tor SocksProxy to fetch git repositories associated with one
 account anyway. So here's our Tor container Dockerfile:
