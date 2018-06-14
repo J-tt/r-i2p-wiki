@@ -51,7 +51,7 @@ outbound.length = 3
 keys = github.dat
 ```
 
-Once you've done that, you can "docker build" the new container and your
+Once you've done that, you can `docker build` the new container and your
 original, darkhttpd tunnel will continue to exist at the same destination but a
 new unique destination will be generated for your forthcoming Github mirror.
 From the perspective of someone browsing the i2p network, and the other routers
