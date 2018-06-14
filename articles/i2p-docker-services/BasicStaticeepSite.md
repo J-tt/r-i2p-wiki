@@ -125,9 +125,9 @@ ARG WEBSITE=website
 ENV WEBSITE=$WEBSITE
 RUN apk update
 RUN apk add darkhttpd
-COPY $WEBSITE /car/www/localhost/htdocs/$WEBSITE
+COPY $WEBSITE /var/www/localhost/htdocs/$WEBSITE
 USER darkhttpd
-CMD darkhttpd /car/www/localhost/htdocs/$WEBSITE --port 8080 --log stdout --no-server-id
+CMD darkhttpd /var/www/localhost/htdocs/$WEBSITE --port 8080 --log stdout --no-server-id
 ```
 
 I keep my eepSite files in the same folder as the Dockefiles, under their own
