@@ -14,10 +14,8 @@ So, just to be clear
 
   * *For this tutorial to be unlinkable to your real identity, your github*
    *must be unlinkable to your real identity*.
-  * *Just because anonymity is a feature doesn't make non-anonymous or*
-   *pseudonymous replication of information atop anonymous infrastructure is a*
-   *less valid goal. There are plenty of cool things you can do with eepSites*
-   *that do not require anonymity in all parts of the world.*
+  * *This is pseudonymous, location-obfuscated mirroring of a github pages*
+   *site.*
 
 Now with that out of the way, let's get down to mirroring a Github Pages site,
 for example this exact wiki, to your own i2p eepSite.
