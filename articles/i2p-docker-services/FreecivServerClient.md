@@ -143,7 +143,7 @@ Particularly, you will need the destination(either the base32 or the
 addresshelper address) of an existing i2p-based Freeciv server. Intermittently,
 there will be one available at the following b32:
 4q7zxgr27pwybbqizpv6nhmriidgwj3owqt33jvuijmro57l7jdq.b32.i2p, but it's not going
-to be up all the time(it's the one I used to test this on my laptop). I'm going
+to be up all the time (it's the one I used to test this on my laptop). I'm going
 to use it in the example.
 
 ### Setting up i2pd
@@ -232,3 +232,12 @@ docker run -i -t --rm \
 	--volume /tmp/.X11-unix:/tmp/.X11-unix:ro \
 	eyedeekay/i2p-freeciv-client
 ```
+
+Find some players!
+------------------
+
+Lastly, you'll need to find some players! Head on over to a public forum for i2p
+users like [r/i2p](https://reddit.com/r/i2p), [i2pforums](https://i2pforum.net),
+or visit i2prc, and find some other i2p users to play with. If they use i2pd,
+you can re-use the same tunnels.conf for clients on their routers without
+needing to change it at all. Enjoy!
