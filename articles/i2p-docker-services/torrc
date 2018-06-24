@@ -1,9 +1,0 @@
-SOCKSPort 172.81.81.6:9150
-
-SOCKSPolicy accept 172.0.0.0/8
-
-DataDirectory /var/lib/tor
-
-ControlPort 172.81.81.6:9151
-
-CookieAuthentication 1
