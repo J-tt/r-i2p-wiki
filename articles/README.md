@@ -1,6 +1,15 @@
 Articles:
 =========
 
+Configuring an i2p browser
+--------------------------
+
+  * **[Easy configuration of an i2p browser for Windows](browser-config/WindowsTestingBrowser.md)** Set up a dedicated
+  i2p browsing profile with Firefox for Windows automatically. By @eyedeekay
+  * **[Configuration of Whonix i2pbrowser profile on Debian-Based GNU/Linux](browser-config/WhonixBrowser.md)** Use
+  Whonix-based Tor/i2p Browser Management Tools with i2p. By @eyedeekay
+
+
 Configuring services with Docker and i2pd ([index](i2p-docker-services/README.md))
 -----------------------------------------------------
 
