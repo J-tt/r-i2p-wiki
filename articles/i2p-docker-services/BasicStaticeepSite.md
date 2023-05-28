@@ -63,7 +63,7 @@ CMD chown -R i2pd:i2pd /var/lib/i2pd; \
 Before we build, we'll need to create a configuration files to use for our
 Dockerized i2pd container. In the i2pd.conf file, you should disable the HTTP
 and SOCKS proxies and set the bandwidth to unlimited("X" in the configuration
-file). [An example i2pd.conf can be found here](i2pd.conf), it can be used for
+file). [An example i2pd.conf can be found here](i2pd.example.conf), it can be used for
 *all* of the forthcoming eepSite tutorials I will be writing. The other,
 slightly more interesting file is the tunnels.conf file.
 
